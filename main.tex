@@ -1,0 +1,162 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amssymb, enumitem, amsmath}
+
+\title{16 Handy Notes}
+\author{Grant Goldsworth}
+\date{}
+\begin{document}
+\maketitle
+
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+
+\section*{Vector Fields}
+\paragraph{Introduction} A function $\mathbf{F}$ is a vector field function if it maps $\mathbb{R}^n$ to $\mathbb{R}^n$. This results in a "field" of vectors where at every point in the function's domain there is a vector output with the tail located at the input point.
+\[ 
+    \mathbf{F}: \mathbb{R}^n \mapsto \mathbb{R}^n \hspace{.4in}
+    \mathbf{F}(x_1,x_2,...x_n) = \mathbf{F}(\mathbf{x}) = 
+    \begin{bmatrix}
+        f_1(x_1,x_2,...x_n) \\
+        f_2(x_1,x_2,...x_n) \\
+        ... \\
+        f_n(x_1,x_2,...x_n)
+    \end{bmatrix}
+\]
+\paragraph{Examples in Physics - Inverse Square Fields} Vector field functions in physics commonly appear in the form of \textbf{inverse square fields}, meaning the function is inversely proportional to a radius between (usually) the origin and some point. This looks like $\mathbf{F} \propto -k/\mathbf{\hat{r}}$ where $\mathbf{\hat{r}}$ is the radial distance and $k$ is some constant. Examples include gravitational force, an attractive force which means that vectors are aligned in the opposite direction of $\mathbf{r}$:
+\[ \mathbf{F_g}(\mathbf{r}) = \frac{GMm}{||\mathbf{r}||^2}(-\frac{\mathbf{\hat{r}}}{||\mathbf{r}||}) = -\frac{GMm}{||\mathbf{r}||^3}\mathbf{\hat{r}}\]
+
+and the electric force, where vector alignment is dependent on the signs of both charges in the system:
+\[ \mathbf{F_E}(\mathbf{r}) = \frac{kQq}{||\mathbf{r}||^2}(\frac{\mathbf{\hat{r}}}{||\mathbf{r}||}) = \frac{kQq}{||\mathbf{r}||^3}\mathbf{\hat{r}}\]
+
+Inverse square laws are often written in the form $\mathbf{F}(\mathbf{r}) = \frac{c}{||\mathbf{r}||^3}\mathbf{r}$ for simplicity. One thing to note is that these vector fields will always equal $\mathbf{0}$ for all points if there is only one mass or charge in the system (there will be no force). Therefore, gravitational and electric fields are used to denote how much force would act upon a given mass at some point in the field:
+\[ \mathbf{a(r)} = -\frac{GM}{||\mathbf{r}||^3}\mathbf{r} \hspace{.4in} \mathbf{E(r)} = \frac{kQ}{||\mathbf{r}||^3}\mathbf{r}\]
+Where $\mathbf{a}$ has units in $\mathrm{m/s}^2$ and $\mathbf{E}$ has units $\mathrm{N/c}$.
+
+\paragraph{Conservative Vector Fields} A vector field $\mathbf{F}$ is conservative if there exists some real valued function $f$ such that
+\[ \mathbf{F} = \nabla f\]
+Furthermore, $f$ is a \textbf{potential function} of $\mathbf{F}$. It should also be noted that gradients of real valued functions are actually vector fields themselves.
+
+\paragraph{Flow Lines} Reference problem 35 in the book. A curve $C$ is a flow line for a vector field $\mathbf{F}$ if for at every point on $C$, $\mathbf{F}$ produces a vector tangent to $C$.
+
+
+\section*{Line Integrals}
+\paragraph{Basics} Line integrals occur on some smoothly parameterized curve $C$ ($\mathbf{r}'(t) \neq 0$, continuous) and integrate a function against arc length $ds$. This integral is effectively finding a "shower curtain" under $f$ and above $C$.
+\[ \int_C f(x,y) ds\]
+To achieve this, we use our four step process
+\begin{enumerate}
+    \item \textbf{Chop} The curve $C$ can be chopped into segments that can be approximated as straight line segments of length $\Delta S$.
+    \item \textbf{Approximate} The area above a single segment can be approximated by using a corner point on the curve $(x_i^*, y_i^*)$m the height of the function at that point $f(x_i^*, y_i^*)$, and the length of the segment: $A \approx f(x_i^*, y_i^*) \cdot \Delta s$
+    \item \textbf{Add} We add up all the segments to approximate the area of the sheet
+    \[ \sum_{1=i}^n f(x_i^*, y_i^*) \Delta s \]
+    \item \textbf{Take the Limit} Let $n$ approach infinity to force all segments to become small and get the integral
+    \[ \lim_{n \to \infty} \sum_{1=i}^n f(x_i^*, y_i^*) \Delta s = \int_C f(x,y)ds \]
+\end{enumerate}
+But since we would like to use a single integral to integrate only one variable, we will convert our function and our curve to creatures of $t$. $C$ is parameterized smoothly by $\mathbf{r}(t)$. The arc length function of $\mathbf{r}(t)$ for $t \in [a,b]$ is
+\[ s(t) = \int_a^b ||\mathbf{r'}(t)||dt\]
+We can approximate the arc length of a subinterval in our summation as $\Delta s = ||\mathbf{r}'(t)|| \Delta t$. Our summation then becomes a summation over a single variable:
+\[ \lim_{n \to \infty} \sum_{1=i}^n f(x_i^*, y_i^*) \Delta s = \int_a^b f(\mathbf{r}(t))||\mathbf{r}'(t)||dt  \]
+
+
+\paragraph{Work} Imagine a particle moving along a smooth parameterized curve $C$ through a vector force field $\mathbf{F}$. $\mathbf{F}$ can do work on or against the particle (but does not account for any of its movement for simplicity). This work can be found by using the face that $W = \mathbf{F} \cdot \mathbf{d}$ where $\mathbf{d}$ is the displacement vector. 
+\begin{enumerate}
+    \item \textbf{Chop} Divide $C$ into segments of length $\Delta s$
+    \item \textbf{Approximate} Approximate the work done by $\mathbf{F}$ on the segment $S_i$: the length of the segment can be approximated by scaling the unit tangent vector $\mathbf{T}$ by the approximate segment length $\Delta s$.  $\mathbf{F}$ and $\mathbf{T}$ are evaluate at some representative point of the segment $P_i^*$. Dot this with force to get the work on the segment:
+    \[ W_i \approx \mathbf{F}(P_i^*) \cdot \mathbf{T}(P_i^*) \Delta s\]
+    \item \textbf{Add Up} Sum all the work over the segments
+    \[ W \approx \sum_{i=1}^n \mathbf{F}(P_i^*) \cdot \mathbf{T}(P_i^*) \Delta s\]
+    \item \textbf{Take Limit} Limit $n$ to infinity to make segments tiny and get the symbolic integral (this ain't gonna be how we solve it, same as above):
+     \[ W = \lim_{n\to\infty} \sum_{i=1}^n \mathbf{F}(P_i^*) \cdot \mathbf{T}(P_i^*) \Delta s = \int_a^b \mathbf{F} \cdot \mathbf{T} ds\]
+\end{enumerate}
+Of course we won't be actually integrating it against arc length when we evaluate these by hand, so we will rewrite this integral as an integral with respect to $t$:
+\[ \int_a^b \mathbf{F} \cdot \mathbf{T} ds = \int_a^b \mathbf{F(r}(t)) \cdot (\frac{\mathbf{r}'(t)}{||\mathbf{r}'(t)||}) (||\mathbf{r}'(t)||)dt = \int_a^b \mathbf{F(r}(t)) \cdot \mathbf{r}'(t)dt\]
+\[\mathbf{T}(t) = \frac{\mathbf{r}'(t)}{||\mathbf{r}'(t)||} \hspace{.3in} ds = ||\mathbf{r}'(t)||dt\]
+
+\paragraph{Alternate Notations} Work line integrals can also be seen in the following form:
+\begin{align*}
+    \int_C \mathbf{F} \cdot \mathbf{T} ds &= \int_C \mathbf{F \cdot} d\mathbf{r} \\
+    &= \int_C <f_1(x,y), f_2(x,y)> \cdot <dx, dy> = \int_C f_1(x,y)dx + f_2(x,y) dy \\
+    &= \int_C f_1(\mathbf{r}(t))x'(t)dt + f_2(\mathbf{r}(t))y'(t)dt \\
+    &= \int_C f_1(\mathbf{r}(t))x'(t)dt + \int_C f_2(\mathbf{r}(t))y'(t)dt
+\end{align*}
+
+\paragraph{Orientation} For ordinary line integrals involving real valued functions, reversing the orientation of the curve does not change the output. Given a piece wise smooth curve $C$, let $-C$ be the same curve with opposite orientation. The following is true:
+\[ \int_{-C} f(x,y,z) ds = \int_C f(x,y,z) ds \]
+Regarding work line integrals, because of the presence of the unit tangent vector $\mathbf{T}$ in the integrand, the result will be negative of the work integral over the reverse oriented curve:
+\[ \int_{-C} \mathbf{F\cdot T}ds = - \int_C \mathbf{F \cdot T}ds \]
+$ds$ is defined as always positive. Thus, if we are using $t$, the same negative modification will occur. For example,
+\[ \int_{-C} f(x,y,z)dx = -\int_C f(x,y,z)dx \]
+The only integral that doesn't change sign when changing orientation is the standard line integral of a scalar valued function against arc length.
+
+\newpage
+
+\section*{Fundamental Theorem of Line Integrals}
+\paragraph{Theorem} If $\mathbf{F}$ is a conservative vector field with potential function $f$, and $f$ has continuous first partials, then for any piecewise smooth curve $C$ that starts at point A and ends at point B, the following is true:
+\[ \int_C \mathbf{F\cdot T}ds = f(B)-f(A) \]
+
+\paragraph{Proof} Let $C$ be a piecewise smooth curve parameterized by $\mathbf{r}(t)=<x(t), y(t)>$ for $a\leq t \leq b$. $\mathbf{r}'(t) = <x'(t), y'(t)> dt$ and is never equal to $\mathbf{0}$. Let $\mathbf{F}(x,y)$ be a conservative vector field \\
+such that $\mathbf{F}(x,y) = \nabla f = <\parf{f}{x}, \parf{f}{y}>$. Then for the line integral,
+\begin{align*}
+    \int_C \mathbf{F \cdot T}ds &= \int_a^b \mathbf{F(r(}t)) \cdot \mathbf{r'}(t)dt \\
+    &= \int_a^b <f_x(\mathbf{r(t)}), f_y(\mathbf{r(t)})> \cdot <x'(t), y'(t)> dt \\
+\end{align*}
+But recall that if we take the total derivative of the function composition, we get
+\[ \frac{d}{dt}f(\mathbf{r}(t)) = \parf{f}{x}\parf{x}{t} + \parf{f}{y} \parf{y}{t} = \nabla f \cdot <x'(t), y'(t)> \]
+The integrand is therefore the total derivative of the function composition $f(\mathbf{r}(t))$:
+\begin{align*}
+    &= \int_a^b \frac{d}{dt} f(\mathbf{r}(t)) dt \\
+    &\mathrm{(FTOC)}\\
+    &= f(\mathbf{r}(b)) - f(\mathbf{r}(a)) \\
+    &= f(B) - f(A)
+\end{align*}
+
+\paragraph{Total Differential} Furthermore, for a conservative field $\mathbf{F}$, the line integral can be rewritten using the fact that $d\mathbf{r} = <dx, dy>$:
+\begin{align*}
+    \int_C \mathbf{F \cdot T}ds &= \int_C \mathbf{F} \cdot d\mathbf{r} \\
+    &= \int_C <f_x(x,y), f_y(x,y)> \cdot <dx,dy> \\
+    &= \int_C f_x(x,y)dx + f_y(x,y)dy \\
+    &= \int_C dz 
+\end{align*}
+Recall that the total differential of $f(x,y)=z$ is $dz = f_x(x,y) dx + f_y(x,y) dy$. This integral will return the change in $z$ value, which is also the change in the value of the function ($f(B) - f(A) = \Delta z$).
+
+\section*{Textbook Theorems}
+\paragraph{Theorem 3} The integral $\int_C \mathbf{F}\cdot \mathbf{T} ds$ is independent of path on region $\mathcal{D}$ if and only if $\oint \mathbf{F \cdot T}ds = 0$ for \textbf{every} closed path $C$ in the region $\mathcal{D}$. 
+\begin{itemize}
+    \item A \textit{path} is a piece wise smooth curve
+    \item A closed path has the same starting point and ending point
+    \item $\oint$ denotes a line integral over a closed path
+\end{itemize}
+
+\paragraph{A Proof} Suppose $\int_C \mathbf{F \cdot T}ds$ is independent of path. The curve $C$ is PW smooth and closed (by definition from our assumption), which means we can split $C$ into two curves $C_1, C_2$ such that $C=C_1 + C_2$ ($C_1$ goes from point A to B, $C_2$ B to A). Then,
+\begin{align*}
+    \oint_C \mathbf{F \cdot T}ds &= \int_{C_1} \mathbf{F \cdot T}ds + \int_{C_2} \mathbf{F \cdot T}ds
+\end{align*}
+But if $C$ is closed, and $C_1$ connects to $C_2$ and $C_2$ connects to the start of $C_1$, then $C_2 = - C_1$
+\begin{align*}
+    \int_C \mathbf{F \cdot T}ds &= \int_{C_1} \mathbf{F \cdot T}ds + \int_{-C_1} \mathbf{F \cdot T}ds \\
+    &= \int_{C_1} \mathbf{F \cdot T}ds - \int_{C_1} \mathbf{F \cdot T}ds = 0
+\end{align*}
+
+\paragraph{Consequence} A conservative vector field is independent of path by definition, and thus it's line integral over a closed path will be 0. In fact, as the next theorem states, only conservative vector field functions have this property.
+
+\paragraph{Theorem 4} If $\int_{C} \mathbf{F \cdot T}ds$ is independent of path on an open, connected region $\mathcal{D}$, then the vector field $\mathbf{F}$ is conservative. \textit{The proof is not covered in lecture and apparently isn't enlightening}.
+
+\section*{Testing if a Field is Conservative}
+
+\paragraph{Basics} If $\mathbf{F} = <P(x,y), Q(x,y)>$ is conservative, then $\mathbf{F} = \nabla f$; in other words, $P(x,y) = f_x$ and $Q(x,y), = f_y$. However, if we take the partial derivatives of $P$ and $Q$ in such a way that they are the \textit{mixed second partials} of $f$, and they are continuous, they will be equal.
+\[ \parf{P}{y} = \parf{}{y}\parf{f}{x} = f_{xy} \hspace{.3in} \parf{Q}{x} = \parf{}{x} \parf{f}{y}=f_{yx}\]
+
+\paragraph{Other Way} If we go the other way, can we say that if the above partials are equal, then $f$ is a potential function for some vector field? Almost. There is one extra condition: this must be true on a simply connected region.
+\begin{enumerate}[label=]
+    \item If $\mathbf{F(x,y) = <P(x,y), Q(x,y)>}$ on a simply connected region $\mathcal{D}$, and $P(x,y)$, $Q(x,y)$ have continuous first partials, then \textbf{if $P_y(x,y) = Q_x(x,y)$ the vector field $\mathbf{F}$ is conservative}.
+\end{enumerate}
+This is the way we usually go about testing whether or not a field is conservative.
+
+\paragraph{Finding Potential Functions} Recall exact equations from differential equations. Once we have shown that a vector field $\mathbf{F}$ is conservative, we can find a potential function to make solving work integrals much easier. There is a general process (scales up for more variables):
+\begin{enumerate}
+    \item Integrate $P(x,y)$ against $x$ or $Q(x,y)$ against $y$. The constant will be a function $k(y)$ if you integrate $P(x,y)$ against x or a function $k(x)$ if you integrate $Q(x,y)$ against y. The entire result is equal to $f$
+    \item Differentiate the new $f(x,y)$ and set it equal to the vector field function you did not integrate in step 1. By doing this you can find an expression for $k'(y)$ or $k'(x)$, which should \textit{only have $x$ or $y$}.
+    \item Integrate $k'(x)$ against $x$ or $k'(y)$ against y, and complete the expression for the potential function.
+\end{enumerate}
+There are two paths through this processes, depending on which component of $\mathbf{F}$ you decide to integrate first. Stick to a path once you choose it.
+\end{document}
