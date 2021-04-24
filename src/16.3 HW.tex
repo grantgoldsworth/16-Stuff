@@ -4,10 +4,11 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{enumitem}
-
+\usepackage{hyperref}
+\usepackage{amsfonts}
 
 \title{Section 16.3 Homework}
-\author{}
+\author{1-25 odd, 29--35 odd}
 \date{}
 
 \newcommand{\eint}[1]{\iiint_E #1 dV}
@@ -16,6 +17,44 @@
 
 
 \begin{document}
-\maketitle
+    \maketitle
+
+    \paragraph{1} Since the gradient of $f$ is continuous, we know that the work line integral of the gradient is just the difference in $z$ values: $50-10=40$.
+
+    \section*{3-9} Determine whether or not $F$ is a conservative vector field.
+    If it is, find a function $f$ such that $\mathbf{F} = \nabla f$.
+
+    \paragraph{3}
+    \[  \mathbf{F}(x,y) = <(xy+y^2), (x^2+2xy)> \]
+    \textbf{Solution}: From our notes, if the mixed second partials of the potential function candidate are equal
+    (basically if the partials of the component functions of $\mathbf{F}$ are equal), then the vector field is conservative, and
+    we can go about finding the potential function.
+    Let $P(x,y) = xy+y^2$ and $Q(x,y) = x^2+2xy$.
+    We have that
+    \begin{align*}
+        \parf{P}{y} &= x + 2y \\
+        \parf{Q}{x} &= 2x + 2y
+    \end{align*}
+    The partials are not equal and thus $\mathbf{F}$ is not a conservative vector field.
+
+
+    \paragraph{5}
+    \[\mathbf{F(x,y)}=<y^{2}e^{xy}, (1+xy)e^{xy}>\]
+    \textbf{Solution}: Same as above, take partials of component functions of the vector field
+    \begin{align*}
+        \parf{P}{y} &= 2ye^{xy} + y^{2}xe^{xy} \\
+        \parf{Q}{x} &= ye^{xy} + ye^{xy} + xy^{2}e^{xy}\\
+    \end{align*}
+    These partials are equal on their natural domains which is all of $\mathbb{R}^2$, a simply connected open region.
+    Therefore a potential function exists.
+    To find this function, we will start by integrating $P(x,y)$ against $x$:
+    \[f(x,y)=\int P(x,y)dx = \int (y^{2}e^{xy}) dx = ye^{xy} + g(y)\]
+    Take the derivative of $f$ with respect to $y$ and compare to $Q(x,y)$:
+    \begin{align*}
+        \parf{f}{y} &= Q(x,y) \\
+        e^{xy} + xye^{xy} + g'(y) &= e^{xy} + xye^{xy} \\
+        g'(y) &= 0 \rightarrow g(y) = 0 + C \\
+    \end{align*}
+    The general solution is $f(x,y) = ye^{xy} + C$.
 
 \end{document}
