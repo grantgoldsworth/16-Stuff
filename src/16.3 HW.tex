@@ -46,7 +46,7 @@
         \parf{Q}{x} &= ye^{xy} + ye^{xy} + xy^{2}e^{xy}\\
     \end{align*}
     These partials are equal on their natural domains which is all of $\mathbb{R}^2$, a simply connected open region.
-    Therefore a potential function exists.
+    Therefore, a potential function exists.
     To find this function, we will start by integrating $P(x,y)$ against $x$:
     \[f(x,y)=\int P(x,y)dx = \int (y^{2}e^{xy}) dx = ye^{xy} + g(y)\]
     Take the derivative of $f$ with respect to $y$ and compare to $Q(x,y)$:
@@ -57,4 +57,218 @@
     \end{align*}
     The general solution is $f(x,y) = ye^{xy} + C$.
 
+    \paragraph{7}
+    \[\mathbf{F}=<ye^x + \sin(y), e^x + x\cos(y)\]
+    \textbf{Solution}: Test if $\mathbf{F}$ is conservative:
+    \[\parf{P}{y} = e^x + \cos(y) \hspace{0.3in} \parf{Q}{x} = e^x + \cos(y)\]
+    The domain of $\mathbf{F}$ is all of $\mathbb{R}^2$.
+    The vector field is conservative. Find a potential function:
+    \begin{align*}
+        f &= \int (ye^{x} + \sin(y))dx \\
+        &= ye^{x} + x\sin(y) + g(y) \\
+        f_y &= Q(x,y)\\
+        e^{x} + x\cos(y) +g'(y) &= e^x + x\cos(y) \\
+        g'(y) &= 0 \rightarrow g(y) = C \\
+    \end{align*}
+    The general solution is $f(x,y) = ye^{x} + x\sin(y) + C$
+
+    \paragraph{9}
+    \[\mathbf{F(x,y)}=<y^{2}\cos(x) + \cos(y), 2y\sin(x)-x\sin(y)>\]
+    \textbf{Solution}: $\mathbf{F}$ is continuous on all of $\mathbb{R}^2$. Test if it is conservative:
+    \[ \parf{P}{y} = 2y\cos(x)-\sin(y) \hspace{0.3in} \parf{Q}{x} = 2y\cos(x)-\sin(y)\]
+    Find a potential function:
+    \begin{align*}
+        f &= \int P(x,y) dx \\
+        &= y^{2}\sin(x) +x\cos(y) + g(y) \\
+        f_y &= Q(x,y)\\
+        2y\sin(x) -x\sin(y) + g'(y) &= 2y\sin(x) - x\sin(y) \\
+        g'(y) &= 0 \rightarrow g(y) = C
+    \end{align*}
+    The general solution is $f(x,y) = y^{2}\sin(x) + x\cos(x) + C$
+
+    \paragraph{11} \textbf{Solution}: $\mathbf{F}=<2xy, x^2>$ has domain of all of the $xy$ plane, and the first partials of the
+    component functions are equal ($P_y = Q_x = 2x$).
+    Therefore, the vector field is conservative and line integrals of conservative vector field are independent of path. To find the value of all three
+    line work integrals, we can find a potential function $f$:
+    \begin{align*}
+        f &= \int P(x,y)dx \\
+        &= x^{2}y + g(y)\\
+        f_y &= Q(x,y) \\
+        x^2 + g'(y) &= x^2 \rightarrow g'(y) = 0 \\
+        g(y) &= C
+    \end{align*}
+    Choose $C=0$, and the value of all three curves is $f(3,2)-f(1,2)=16$.
+
+    \section*{13-17} Find a function $f$ such that $\mathbf{F} = \nabla f$, and use this function to evaluate a line
+    work integral along the given path.
+
+    \paragraph{13}
+    \[\mathbf{F(x,y)}=<x^{2}y^{3}, x^{3}y^{2}> \hspace{0.3in} C: \mathbf{r}(t) = <t^3-2t, t^3+2t> (t\in [0,1])\]
+    \textbf{Solution}: I'll assume that because of the way these problems are given, $\mathbf{F}$ is a conservative vector field and
+    we can jump straight to finding $f$:
+    \begin{align*}
+        f &= \int P(x,y) dx \\
+        &= \int x^{2}y^{3}dx = \frac{1}{3}x^{3}y^{3} + g(y) \\
+        f_y &= Q(x,y)\\
+        x^{3}y^{2} + g'(y) &= x^{3}y^{2} \rightarrow g'(y) = 0\\
+        f(x,y) &= \frac{1}{3}x^{3}y^{3} + C
+    \end{align*}
+    The path travels from (0,0) $(t=0)$ to $(-1,3)$ $(t=1)$.
+    \[\int_C \mathbf{F\cdot}d\mathbf{r} = f(-1,3)-f(0,0) = -9\]
+
+    \paragraph{15}
+    \[
+        \mathbf{F(x,y,z)} = \begin{bmatrix} yz \\ xz \\ xy+2z \end{bmatrix}
+    \]
+    Where $C$ is the line segment from $(1,0,-2)$ to $(4,6,3)$.\\
+    \textbf{Solution}: We could parameterize $C$ easily but we don't need to if $\mathbf{F}$ is conservative. As with
+    the last problem, I'll assume it is from the way it is presented in this problem set. Let's find the general potential function:
+    \begin{align*}
+        f &= \int P(x,y,z)dx = xyz + g(y,z) \\
+        f_y &= Q(x,y) \\
+        xz + g_y(y,z) &= xz \rightarrow g_y(y,z) = 0 \\
+        g(y,z) &= h(z)\\
+        f_z(x,y,z) &= R(x,y,z)\\
+        xy + h'(z) &= xy + 2z \rightarrow h'(z) = 2z \\
+        h(z) &= z^2 + C\\
+    \end{align*}
+    Our general solution is $f(x,y,z) = xyz + z^2 + C$. Choosing $C=0$, the result of any line integral along a path connecting the
+    two points is $f(4,6,3)-f(1,0,-2)=81-4=77$'
+
+    \paragraph{17}
+    \[
+        \mathbf{F(x,y,z)} = \begin{bmatrix} yze^{xz} \\ e^{xz} \\ xye^{xz} \end{bmatrix}
+        \hspace{0.3in}
+        C: \mathbf{r}(t) = \begin{bmatrix} t^2 + 1\\ t^2-1 \\ t^2-2t \end{bmatrix} (t \in [0,2])
+    \]
+    Can't scare me with that path parameterization.
+    We will use it to calculate our start and end points, however: $(1,-1,0)$ to $(5,3,0)$.
+    \begin{align*}
+        f &= \int P(x,y,z) dx \\
+        f &= ye^{xz} + g(y,z)\\
+        f_y &= Q(x,y,z) \\
+        e^{xz} + g_y(y,z) &= e^{xz} \rightarrow g_y(y,z) = 0 \\
+        g(y,z) &= h(z) \\
+        f_z &= R(x,y,z) \\
+        xye^{xz} + h'(z) &= xye^{xz} \rightarrow h'(z) = 0 \\
+        h(z) = C \\
+    \end{align*}
+    The general solution is $f(x,y,z) = ye^{xz}+C$. Choosing $C=0$, the result of a line integral along any path connecting
+    the two points of the curve is $f(5,3,0)-f(1,-1,0)=3e^0 +e^0 = 4$
+    
+    \paragraph{19} Show that the line integral is independent of path and evaluate it.
+    \[\int_C 2xe^{-y}dx + (2y-x^{2}e^{-y})dy\]
+    Where $C$ is any path from (1,0) to (2,1).\\
+    \textbf{Solution}: The integrand is a physics-abomination mess, but it is the result of a dot product. More specifically,
+    $\mathbf{F} \cdot d\mathbf{r}$ with $\mathbf{F}=<2xe^{-y}, 2y-x^{2}e^{-y}>$ and $d\mathbf{r} = <dx, dy>$. If we can show that the
+    vector field is conservative, we can find a potential function and answer the question.
+    \[P_y = -2xe^{-y} \hspace{0.3in} Q_x = -2xe^{-y}\]
+    Hooray, they are equal. Let's find the potential function:
+    \begin{align*}
+        f &= \int P(x,y) dx = x^{2}e^{-y} + g(y) \\
+        f_y &= Q(x,y) \\
+        -x^{2}e^{-y} + g'(y) &= 2y-x^{2}e^{-y} \rightarrow g'(y) = 2y \\
+        g(y) &= \int 2y dy = y^2 + C \\
+    \end{align*}
+    The general solution is $f(x,y) = x^{2}e^{-y} + y^2 + C$.
+    The work line integral along any path will equal $f(2,1)-f(1,0)=(4/e+1)-(1)=4/e$
+
+    \paragraph{21} Suppose you're asked to determine the curve that requires
+    the least work for a force field $\mathbf{F}$ to move a particle from one point to another point.
+    You decide to check first whether F is conservative, and indeed it turns out that it is.
+    How would you reply to the request?\\
+    \textbf{Solution}: I'd say "it's up to you chief, it don't matter"
+
+    \paragraph{23} Find the work done by the force field $\mathbf{F}$ in moving an object from $P$ to $Q$
+    \[\mathbf{F}(x,y) = <x^3, y^3> \hspace{0.3in}P(1,0),Q(2,2)\]
+    \textbf{Solution} Is the vector field conservative? Most likely not, but let's give it a shot:
+    \[P_y = 0 \hspace{0.3in} Q_x = 0\]
+    The vector field is continuous on a simply connected open region (all of $\mathbb{R}^2$) and the first partials are equal.
+    I stand corrected.
+    \begin{align*}
+        f &= \int P(x,y)dx = \frac{1}{4}x^4 + g(y)\\
+        g'(y) &= y^3 \\
+        g(y) &= \frac{1}{4}y^4 + C\\
+    \end{align*}
+    $f(x,y) = x^4/4 + y^4/4 + C$. Choose $C=0$ and the final answer is $f(2,2)-f(1,0)=8-1/4=31/4$
+
+    \paragraph{25} \textbf{Solution}: If we take a curve $C$ to be a circle oriented CCW (along the vectors), then the net
+    result of a line integral along that path would not be 0 -- the field is not conservative (the vectors are somewhat parallel with the
+    CCW orientation, and the dot product $\mathbf{F \cdot T}$ would be returning non-zero numbers).
+    
+    \paragraph{29} Show that if the vector field $\mathbf{F}(x,y,z)=<P,Q,R>$ is conservative, and $P,Q,R$ have continuous first order partial
+    derivatives, then
+    \[
+        \parf{P}{y} = \parf{Q}{x} \hspace{0.3in}
+        \parf{P}{z} = \parf{R}{x} \hspace{0.3in}
+        \parf{Q}{z} = \parf{R}{y}
+    \]
+    \textbf{Solution}: This is basically asking to show that $\nabla \times \mathbf{F}$ is $\mathbf{0}$, I think (0 curl
+    is a property of conservative vector fields).
+    \[
+        \nabla \times \mathbf{F} =
+        \begin{vmatrix}
+            \mathbf{i} & \mathbf{j} & \mathbf{k}\\
+            \parf{}{x} & \parf{}{y} & \parf{}{z} \\
+            P & Q & R
+        \end{vmatrix} =
+        \begin{bmatrix}
+            R_y - Q_z \\ P_z - R_x \\ Q_x - P_y \\
+        \end{bmatrix}
+        = \mathbf{0}
+    \]
+    In order for the last equal sign to be true (for the determinant vector to equal the zero vector) the equalities presented
+    in the problem need to be true (so the differences are 0).
+    This is the fancy way of saying that by Clairaut's theorem, the continuous second mixed partials on an open connected region
+    are equal (we know this applies because $\mathbf{F}$ is conservative and $\mathbf{F} = \nabla f$).
+
+
+    \section*{31,33} Determine whether the set is (a) open, (b) connected, (c) simply connected
+    \paragraph{31}
+    \[ \{(x,y)|\hspace{0.1in} 0 < y < 3\}\]
+    \textbf{Solution}:
+    \begin{enumerate}[label=(\alph*)]
+        \item The set has non-inclusive boundaries (indicated by the less than symbols), so it is open.
+        \item The set is connected because it is "in one piece".
+        \item The set is simply connected because there are "no holes"; no simple closed curve in the set encloses points not in the set.
+    \end{enumerate}
+
+    \paragraph{33}
+    \[ \{(x,y)|\hspace{0.1in} 1 \leq x^2 + y^2 \leq 4, y \geq 0\}\]
+    \textbf{Solution}:
+    \begin{enumerate}[label=(\alph*)]
+        \item The set has inclusive boundaries (I can place a disk at a point in the set that goes outside the set) and thus it is not open.
+        \item The set is connected because it is in one piece.
+        \item The set is simply connected because no simple closed curve in the set encloses points in the set
+    \end{enumerate}
+
+    \paragraph{35}
+    \[\mathbf{F}(x,y) = \frac{1}{x^2 + y^2}<-y, x>\]
+    \begin{enumerate}[label=(\alph*)]
+        \item Show $P_y = Q_x$
+        \item Show that a work line integral of $\mathbf{F}$ is not independent of path.
+    \end{enumerate}
+    \textbf{Solution}:
+    \begin{align*}
+        P_y &= \frac{-(x^2+y^2)-2y^2)}{(x^2+y^2)^2} = \frac{y^2-x^2}{x^2+y^2}\\
+        Q_x &= \frac{-(x^2+y^2)-2x^2}{(x^2+y^2)^2} = \frac{y^2-x^2}{x^2+y^2}
+    \end{align*}
+    The partials are equal, but the problem asks us to show that $\mathbf{F}$ is not independent of path.
+    The book suggests using two halves of
+    the unit circle as paths, and showing that the line integrals are equal.
+    Let $C_1: \mathbf{r}(t) = <\cos(t), \sin(t)>$ for $t \in [0,\pi]$
+    and $C_2: \mathbf{r}(t) = <\cos(t), \sin(t)>$ for $t: 2\pi \to \pi$.
+    \begin{align*}
+        \int_{C_1} \mathbf{F} \cdot d \mathbf{r} &= \int_{0}^{\pi} \mathbf{F(r}(t)) \cdot <-\sin(t), \cos(t)>dt\\
+        &= \int_{0}^{\pi} <-\sin(t), \cos(t)> \cdot <-\sin(t), \cos(t)>dt \\
+        &= \int_0^{\pi}1dt = \pi
+    \end{align*}
+    The work line integral over $C_2$ will have the same calculation but with different bounds:
+    \[\int_{C_2} \mathbf{F(r}(t)) \cdot d\mathbf{r} = \int_{2\pi}^{\pi} 1 dt = \pi - 2\pi = -\pi\]
+    The line integrals are not equal and therefore are not independent of path.
+    Since we did not integrate over a path enclosing the hole at the origin, we are not in violation of our rules.
+    \paragraph{35, Note}: The textbook mentions using a contrapositive of Theorem 3. Theorem 3 states that $\int_C \mathbf{F} \cdot d\mathbf{r}$ is independent
+    of path if and only if $\int_C \mathbf{F} \cdot d\mathbf{r} = 0$ for every closed path $C$ in $D$.
+    The contrapositive would be that any line integral over a closed path in $C$ of a vector function that isn't independent of path is not 0. For example,
+    if we integrate over the entire unit circle, the result is $2\pi \neq 0$.
 \end{document}
