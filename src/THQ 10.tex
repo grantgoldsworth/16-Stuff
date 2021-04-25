@@ -1,0 +1,89 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{amsfonts}
+
+
+\title{Take Home Quiz 10}
+\author{}
+\date{}
+
+\newcommand{\dint}[1]{\iint_{\mathcal{D}} #1 dA}
+\newcommand{\D}{\mathcal{D}}
+
+
+\begin{document}
+    \maketitle
+
+    \paragraph{1} Let $C$ be the top half of the unit circle, oriented \textit{clockwise}.
+    Let $\mathbf{F}(x,y)=<y,x^2>$ be a force field.
+    Calculate the work done by $\mathbf{F}$ acting on a particle that moves along $C$.
+    Assume force is measured in Newtons and distance in meters.
+    \\
+    \begin{itemize}
+        \item \textbf{Solution}: $C$ can be parameterized by $\mathbf{r}(t)=<\cos(t), \sin(t)>$ for $t \in [0,\pi]$.
+        Since $\mathbf{F}$ is not conservative, we have to calculate the integral manually.
+        $\mathbf{F(r}(t)) = <\sin(t), \cos^2(t)>$ and $d\mathbf{r}(t)=<-\sin(t), \cos(t)>dt$.
+        \begin{align*}
+            \int_C \mathbf{F\cdot }d\mathbf{r} &= \int_0^{2\pi} \mathbf{F(r}(t)) \cdot \mathbf{r'(t)}dt \\
+            &= \int_0^{2\pi} <\sin(t), \cos^{2}(t)> \cdot <-\sin(t), \cos(t)>dt \\
+            &= \int_0^{2\pi} (-\sin^{2}(t) + \cos^{3}(t))dt \\
+            &= \int_0^{2\pi} \cos^{3}(t)dt - \int_0^{2\pi} \sin^{2}(t)dt \\
+        \end{align*}
+        \item For the first integral, we split the cubic power of cosine to get $\cos^{2}(t)=1-\sin^{2}(t)$.
+        For the second integral, we can derive a double angle relation for $\sin^{2}(t)$:
+        \begin{align*}
+            e^{2ti} &= (\cos(t) + i\sin(t))(\cos(t) + i\sin(t)) \\
+            &= \cos^{2}(t) - \sin^2(t) + 2i\sin(t)\cos(t) \\
+            \cos(2t) &= \mathrm{Re}(e^{2ti}) = \cos^2(t)-\sin^2(t)\\
+            \cos(2t) &= (1-\sin^{2}(t))-\sin^{2}(t) = 1-2\sin^{2}(t)\\
+            \sin^2(t) &= \frac{1-\cos(2t)}{2}
+        \end{align*}
+        Back to our integrals:
+        \begin{align*}
+            \int_0^{2\pi} \cos^{3}(t)dt - \int_0^{2\pi} \sin^{2}(t)dt &= \int_0^{2\pi} (1-\sin^{2}(t))\cos(t)dt - \int_0^{2\pi}\frac{1-\cos(2t)}{2}dt \\
+            &u = \sin(t) \hspace{0.2in} du = \cos(t)dt \\
+            &u(0) = 0 \hspace{0.1in} u(2\pi) = 0\\
+            &= 0 - \frac{1}{2}[t-\frac{1}{2}\sin(2t)]_0^{2\pi} = \pi \hspace{0.1in} \mathrm{N\cdot m}
+        \end{align*}
+    \end{itemize}
+
+    \newpage
+
+    \paragraph{2}
+    \[\mathbf{F} = <\frac{2x}{y}-e^{x}, -\frac{x^2}{y^2}+3y>\]
+    \begin{itemize}
+        \item Draw the largest simply connected region $D$ that contains the point (1,5) on which $\mathbf{F}$ is defined.
+        \item Verify that $\mathbf{F}$ is conservative on $D$.
+        \item Find a potential function $f$ on $D$
+    \end{itemize}
+    \textbf{Solution}
+    \begin{itemize}
+        \item The vector field is undefined for the line $y=0$.
+        A simply connected region must not contain any holes and must be in one complete piece;
+        therefore $D$ must be all points $(x,y)$ such that $y>0$ (above the x axis).
+        \[\mathcal{D} =  \{(x,y)|\hspace{0.1in} y >0\}\]
+        \item Testing if $\mathbf{F}$ is conservative (for vector fields in $\mathbb{R}^2$ this can be thought of as finding
+        the 'curl' and verifying it is 0, although not really).
+        \begin{align*}
+            P_y &= -\frac{2x}{y^2}\\
+            Q_x &= -\frac{2x}{y^2}
+        \end{align*}
+        $\mathbf{F}$ is conservative on the domain $\mathcal{D}$. To find the potential function $f$, I think integrating $P(x,y)$
+        against $x$ is the easier way to start:
+        \begin{align*}
+            f &= \int P(x,y) dx = \frac{x^2}{y} -e^x + g(y)\\
+            f_y &= Q(x,y)\\
+            -\frac{x^2}{y^2} +g'(y) &= -\frac{x^2}{y^2}+3y\\
+            g'(y) &= 3y \rightarrow g(y) = \frac{3}{2}y^2 + C
+        \end{align*}
+        The general solution is
+        \[f(x,y) = \frac{x^2}{y}+\frac{3}{2}y^2 -e^{x} + C\]
+        Any particular solution is a potential function that satisfies $\mathbf{F}(x,y) = \nabla f(x,y)$
+    \end{itemize}
+\end{document}
+
+
