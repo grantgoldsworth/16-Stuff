@@ -19,17 +19,17 @@
     \maketitle
 
     \paragraph{1} Let $C$ be the top half of the unit circle, oriented \textit{clockwise}.
-    Let $\mathbf{F}(x,y)=<y,x^2>$ be a force field.
+    Let $\mathbf{F}(x,y)=\langle y,x^2\rangle$ be a force field.
     Calculate the work done by $\mathbf{F}$ acting on a particle that moves along $C$.
     Assume force is measured in Newtons and distance in meters.
     \\
     \begin{itemize}
-        \item \textbf{Solution}: $C$ can be parameterized by $\mathbf{r}(t)=<\cos(t), \sin(t)>$ for $t \in [0,\pi]$.
+        \item \textbf{Solution}: $C$ can be parameterized by $\mathbf{r}(t)=\langle \cos(t), \sin(t)\rangle $ for $t \in [0,\pi]$.
         Since $\mathbf{F}$ is not conservative, we have to calculate the integral manually.
-        $\mathbf{F(r}(t)) = <\sin(t), \cos^2(t)>$ and $d\mathbf{r}(t)=<-\sin(t), \cos(t)>dt$.
+        $\mathbf{F(r}(t)) = \langle \sin(t), \cos^2(t)\rangle $ and $d\mathbf{r}(t)=\langle -\sin(t), \cos(t)\rangle dt$.
         \begin{align*}
             \int_C \mathbf{F\cdot }d\mathbf{r} &= \int_0^{2\pi} \mathbf{F(r}(t)) \cdot \mathbf{r'(t)}dt \\
-            &= \int_0^{2\pi} <\sin(t), \cos^{2}(t)> \cdot <-\sin(t), \cos(t)>dt \\
+            &= \int_0^{2\pi} \langle \sin(t), \cos^{2}(t)\rangle  \cdot \langle -\sin(t), \cos(t)\rangle dt \\
             &= \int_0^{2\pi} (-\sin^{2}(t) + \cos^{3}(t))dt \\
             &= \int_0^{2\pi} \cos^{3}(t)dt - \int_0^{2\pi} \sin^{2}(t)dt \\
         \end{align*}
@@ -54,7 +54,7 @@
     \newpage
 
     \paragraph{2}
-    \[\mathbf{F} = <\frac{2x}{y}-e^{x}, -\frac{x^2}{y^2}+3y>\]
+    \[\mathbf{F} = \left\langle \frac{2x}{y}-e^{x}, -\frac{x^2}{y^2}+3y\right\rangle \]
     \begin{itemize}
         \item Draw the largest simply connected region $D$ that contains the point (1,5) on which $\mathbf{F}$ is defined.
         \item Verify that $\mathbf{F}$ is conservative on $D$.
@@ -64,8 +64,8 @@
     \begin{itemize}
         \item The vector field is undefined for the line $y=0$.
         A simply connected region must not contain any holes and must be in one complete piece;
-        therefore $D$ must be all points $(x,y)$ such that $y>0$ (above the x axis).
-        \[\mathcal{D} =  \{(x,y)|\hspace{0.1in} y >0\}\]
+        therefore $D$ must be all points $(x,y)$ such that $y > 0$ (above the x axis).
+        \[\mathcal{D} =  \{(x,y)|\hspace{0.1in} y > 0\}\]
         \item Testing if $\mathbf{F}$ is conservative (for vector fields in $\mathbb{R}^2$ this can be thought of as finding
         the 'curl' and verifying it is 0, although not really).
         \begin{align*}
