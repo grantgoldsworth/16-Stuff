@@ -160,5 +160,43 @@ This is the way we usually go about testing whether or not a field is conservati
 \end{enumerate}
 There are two paths through this processes, depending on which component of $\mathbf{F}$ you decide to integrate first. Stick to a path once you choose it.
 
+\section*{Curl and Divergence}
+\paragraph{Operators} Operators act on functions, taking them in as inputs and returning related functions as outputs. Operators are not functions themselves as not all operators return unique functions for each unique input (family of antiderivatives, for example). 
+
+\paragraph{Curl} The curl of a vector field $\mathrm{curl}(\mathbf{F})$ is symbolically defined as 
+\[ 
+    \mathrm{curl}(\mathbf{F}) = \Vec{\nabla} \times \mathbf{F} =
+    \begin{vmatrix}
+        \mathbf{i} & \mathbf{j} & \mathbf{k} \\
+        \parf{}{x} & \parf{}{y} & \parf{}{z} \\
+        f_1(x,y,z) & f_2(x,y,z) & f_3(x,y,z)
+    \end{vmatrix}
+\]
+Where $f_1, f_2, f_3$ are real valued component functions of the vector field $\mathbf{F}$. Note for this class curl and divergence are only defined for vector fields in $\mathbb{R}^3$.
+
+\paragraph{Conservative Functions and Curl} A conservative vector field is defined as $\mathbf{F}(x,y,z) = \nabla f(x,y,z)$. The curl of a conservative vector field is:
+\[ 
+    \mathrm{curl}(\mathbf{F}) = \nabla \times \nabla f =
+    \begin{vmatrix}
+        \mathbf{i} & \mathbf{j} & \mathbf{k} \\
+        \parf{}{x} & \parf{}{y} & \parf{}{z} \\
+        \parf{f}{x} & \parf{f}{y} & \parf{f}{z} \\
+    \end{vmatrix}
+    = \begin{bmatrix}
+        f_{zy}-f_{yz} \\
+        f_{xz} - f_{zx} \\
+        f_{yx} - f_{xy} \\
+    \end{bmatrix}
+    = \mathbf{0}
+\]
+By Clairaut's theorem, if the second partials of $f$ (first partials of component functions of $\mathbf{F}$) are continuously differentiable on a simply connected region, then they are equal which means the result is $\mathbf{0}$. This fact can be used as a test: \textbf{On a simply connected region, if $\nabla \times \mathbf{F}=\mathbf{0}$ then $\mathbf{F}$ is a conservative vector field}.
+
+\paragraph{Divergence} The divergence of a vector field in $\mathbb{R}^3$ is denoted $\mathrm{div}(\mathbf{F}) = \nabla \cdot \mathbf{F}$. It returns a scalar valued function:
+\[ \nabla \cdot \mathbf{F}(x,y,z) = \langle \parf{}{x}, \parf{}{y}, \parf{}{z} \rangle \cdot \langle P(x,y,z), Q(x,y,z), R(x,y,z) \rangle = \parf{P}{x} + \parf{Q}{y} + \parf{R}{z}\]
+
+\paragraph{Theorem 11} If $\mathbf{F} = \langle P, Q, R \rangle$ is a vector field in $\mathbb{R}^3$ whose components have continuous second partials, then the divergence of the curl of $\mathbf{F}$ is 0:
+\[ \nabla \cdot (\nabla \times \mathbf{F}) = 0 \]
+
+\paragraph{Inverse Square Fields} The divergence of an inverse square field is always 0, and since inverse square fields are conservative, the curl is also $\mathbf{0}$.
 
 \end{document}
