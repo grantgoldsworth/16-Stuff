@@ -199,4 +199,40 @@ By Clairaut's theorem, if the second partials of $f$ (first partials of componen
 
 \paragraph{Inverse Square Fields} The divergence of an inverse square field is always 0, and since inverse square fields are conservative, the curl is also $\mathbf{0}$.
 
+\section*{Surface Parameterization}
+\paragraph{Basics} Parameterization of surfaces maps some region in $\mathbb{R}^2$ to a 2 dimensional surface in $\mathbb{R}^3$ (for our concerns this is the mapping, it can be done for various dimensions on input and output). 
+\paragraph{Spherical Constant Surfaces} An easy way to see how it works is to parameterize the unit sphere $\rho = 1$. We know that $x = \rho\sin(\phi)\cos(\theta)$, $y=\rho \sin(\phi)\sin(\theta)$, and $z = \rho \cos(\phi)$. With $\rho = 1$, the parameterization function is
+\[ \mathbf{r}(\phi, \theta) = \langle \sin(\phi)\cos(\theta), \sin(\phi)\sin(\theta), \cos(\phi) \rangle \]
+Drawing constant $\phi$ lines in the $\phi-\theta$ plane will map to circles of varying width in $z$ planes. Constant $\theta$ lines map to half circles perpendicular to the $xy$ plane.
+
+\paragraph{Planes} Given a point $\mathbf{r}_0$ and two vectors $\mathbf{a,b}$, we know that we can use those objects to define a plane. Any point in that plane can be expressed as a linear combination of the two vectors:
+\[ \mathbf{r}(u,v) = u\mathbf{a} + v\mathbf{b} \]
+
+\paragraph{Functions} Functions can be parameterized by replacing $x$ and $y$ with $u$ and $v$:
+\[ f(x,y) \rightarrow \mathbf{r}(u,v) = \langle u,v, f(u,v) \rangle \]
+Note this only works for \textit{functions}. A function $y=f(x)$ in the $xy$ plane that is rotated about the $x$ axis can be parameterized as
+\[ \mathbf{r}(u,v) = \langle u, f(u)\cos(v), f(u)\sin(v) \rangle \]
+When the function is rotated about the $x$ axis, the radius of a circle-slice is $f(x_0)$. The entire circle can be drawn in a plane parallel to the $yz$ plane (or the plane of variables not being rotated) by using sine and cosine.
+
+\paragraph{Smoothness} A parameterization of a surface is smooth if the partials are continuous and are not equal to the 0 vector. A shorter way to say this is that their cross product is 0:
+\[ \parf{\mathbf{r}}{u} \times \parf{\mathbf{r}}{v} \neq \mathbf{0} \]
+A consequence of this is that the surface has a constantly varying unit normal vector $\mathbf{n}$
+\[ \mathbf{n} = \frac{\mathbf{r}_u \times \mathbf{r}_v}{||\mathbf{r}_u \times \mathbf{r}_v||} \]
+
+\paragraph{Tangent Surface} Now that we know how to find the normal vector for a smooth surface, we can use it in point-normal form to find an equation of a tangent plane to the surface at a point:
+\[(\mathbf{r}_u \times \mathbf{r}_v)|_{(u_0, v_0)} \cdot \langle \Delta x, \Delta y, \Delta z \rangle =0 \]
+
+\paragraph{Surface Area} Finding surface area of parameteric surfaces is a similar process to regular functional surfaces.
+\begin{enumerate}
+    \item \textbf{Chop}: Chop $\mathcal{D}$, the region in $uv$ space, into regular partitions, which will induce a chopping of the surface $S$ in $xyz$ space.
+    \item \textbf{Approximate} Each patch or slice of $S$ has area that can be approximated by a parallelogram, whose sides are scalar multiples of the partial derivative vectors of the surface parameterization. In order to get approximately the right area, the vectors are scaled by the change in parameter from the slicing of $\mathcal{D}$, $\Delta u$ and $\Delta v$:
+    \[ A \approx ||\Delta u \mathbf{r}_u(P^*) \times \Delta v \mathbf{r}_v(P^*)|| = ||\mathbf{r}_u(P^*) \times \mathbf{r}_v(P^*)|| \Delta u \Delta v\]
+    \item \textbf{Sum} We add the areas of all the patches
+    \[ \sum_{i=1}^n \sum_{j=1}^m ||\mathbf{r}_u(P_{ij}^*) \times \mathbf{r}_v(P_{ij}^*)||\Delta u \Delta v\]
+    \item And finally, take the limit as partitions get infinitely small:
+    \begin{gather*}
+        \lim_{m,n \to \infty} \sum_{i=1}^n \sum_{j=1}^m ||\mathbf{r}_u(P_{ij}^*) \times \mathbf{r}_v(P_{ij}^*)||\Delta u \Delta v\\
+        = \iint_{\mathcal{D}} ||\mathbf{r}_u \times \mathbf{r}_v||dA
+    \end{gather*}
+\end{enumerate}
 \end{document}
