@@ -1,0 +1,144 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{amsfonts}
+
+\title{Section 16.5 Homework}
+\author{1-21 odd}
+\date{}
+
+\newcommand{\eint}[1]{\iiint_E #1 dV}
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\D}{\mathcal{D}}
+
+
+\begin{document}
+    \maketitle
+
+    \begin{gather*}
+        \mathrm{div}(\mathbf{F}) = \nabla \cdot \mathbf{F} = \parf{P}{x} + \parf{Q}{y} + \parf{R}{z}\\
+        \mathrm{curl}(\mathbf{F}) = \nabla \times \mathbf{F} =
+        \begin{vmatrix}
+            \mathbf{i} & \mathbf{j} & \mathbf{k} \\
+            \parf{}{x} & \parf{}{y} & \parf{}{z} \\
+            P & Q & R
+        \end{vmatrix}
+        = \langle R_y - Q_z, P_z - R_x, Q_x - P_y \rangle
+    \end{gather*}
+
+    \section*{1-7} Find the curl and divergence of the vector field.
+
+    \paragraph{1}
+    \[ \mathbf{F}(x,y,z) = \langle xy^{2}z^{2}, x^{2}yz^{2}, x^{2}y^{2}z^{2}  \rangle \]
+    \textbf{Solution}:
+    \begin{gather*}
+        \nabla \cdot \mathbf{F} = y^{2}z^{2} + x^{2}z^{2} + x^{2}y^{2}\\
+        \nabla \times \mathbf{F} = \langle 2x^{2}yz^{2} - 2x^{2}yz, 2xy^{2}z - 2xy^{2}z, 2xyz^{2}-2xyz^{2} \rangle = \mathbf{0}
+    \end{gather*}
+
+    \paragraph{3}
+    \[ \mathbf{F}(x,y,z) = \langle xye^{z}, 0, yze^{x} \rangle \]
+    \textbf{Solution}:
+    \begin{gather*}
+        \nabla \cdot \mathbf{F} = ye^{z}+ye^{x}\\
+        \nabla \times \mathbf{F} = \langle ze^{x}, xye^{z}-yze^{x}, -xe^{z} \rangle
+    \end{gather*}
+    
+    \paragraph{5}
+    \[
+        \mathbf{F}(x,y,z) =
+        \begin{bmatrix}
+            \frac{\sqrt{x}}{1+z} & \frac{\sqrt{y}}{1+x} & \frac{\sqrt{z}}{1+y}
+        \end{bmatrix}
+    \]
+    \textbf{Solution}:
+    \begin{gather*}
+        \nabla \cdot \mathbf{F} = \frac{1}{2\sqrt{x}(1+z)} + \frac{1}{2\sqrt{y}(1+x)} + \frac{1}{2\sqrt{z}(1+y)}\\
+        \nabla \times \mathbf{F} =
+        \begin{bmatrix}
+            -\sqrt{z}(1+y)^{-2} & -\sqrt{x}(1+z)^{-2} & -\sqrt{y}(1+x)^{-2}
+        \end{bmatrix}
+    \end{gather*}
+
+    \paragraph{7}
+    \[\mathbf{F}(x,y,z) = \langle e^{x}\sin(y), e^{y}\sin(z), e^{z}\sin(x) \rangle \]
+    \textbf{Solution}
+    \begin{gather*}
+        \nabla \cdot \mathbf{F} = \mathbf{F}\\
+        \nabla \times \mathbf{F} = \langle -e^{y}\cos(z), -e^{z}\cos(x), -e^{x}\cos(y) \rangle
+    \end{gather*}
+
+    \paragraph{9} We are given that the z component is 0, and from the picture it appears the x component of all vectors is also 0 (and so are the partials of $P$ and $R$).
+    $Q$ (the $y$ component) is shrinking as $y$ increases, signifying a negative first partial of $Q$ and thus a negative divergence ($\nabla \cdot \mathbf{F} = 0 + Q_y + 0$).
+    The curl is $\langle R_y - Q_z, P_z - R_x, Q_x - P_y \rangle$ If $P(x,y,z) = R(x,y,z) = 0$, then the partials of those functions are 0. $Q$ is only dependent on $y$ and thus
+    the partials $Q_x=Q_z=0$. So, the curl is $\langle 0-0, 0-0, 0-0\rangle = \mathbf{0}$.
+
+    \paragraph{11} As with (9), $R(x,y,z) = 0$. There appears to be no vertical ($y$) component to any vectors, so we can assume $Q(x,y,z)=Q_y(x,y,z)=0$. The horizontal
+    component of the vectors $P(x,y,z)$ varies with $y$: it increases as $y$ increases (so $P_y$ is positive). There does not appear to be any dependence of $P$ on $x$,
+    so $P_x = 0$. The divergence is then 0 ($P_x + Q_y + R_z = 0$). The curl is $\langle R_y - Q_z, P_z - R_x, Q_x - P_y \rangle$, but $R_x = R_y = Q_z = Q_x = P_x = 0$, so
+    the resulting vector is $\langle0,0, - P_y\rangle$. Since $P_y$ is positive, the curl is pointing in the negative $z$ direction.
+
+    \section*{13-17} Determine if the field is conservative. If it is, find a potential function.
+    \paragraph{13} $\mathbf{F}(x,y,z) = y^{2}z^{3}\mathbf{i} + 2xyz^{3}\mathbf{j} + 3xy^{2}z^{2}\mathbf{k}$ \\
+    \begin{itemize}
+        \item \textbf{Solution}: A conservtive vector field has a curl vector of $\mathbf{0}$ for a simply connected open region (continuous partials and all that too).
+        The function $\mathbf{F}$ in question here has simply polynomial componenent functions so is continuous everywhere and has continuous first partials. Testing the curl:
+        \[\mathrm{curl}(\mathbf{F}) = \langle 6xyz^{2} - 6xyz^{2}, 3y^{2}z^{2} - 3y^{2}z^{2}, 2yz^{3} - 2yz^{3} \rangle = \mathbf{0}\]
+        \item The curl is $\mathbf{0}$ so $\mathbf{F}$ is conservative. To find the potential function $f$:
+        \begin{align*}
+            f &= \int P(x,y,z)dx = \int y^{2}z^{3}dx = xy^{2}z^{3} + g(y,z)\\
+            f_y &= Q\\
+            2xyz^{3} + g_y(y,z) &= 2xyz^{3} \rightarrow g_y(y,z) = 0\\
+            g(y,z) = \int(0)dz &= h(z)\\
+            f &= xy^{2}z^{3} + h(z)\\
+            3xy^{2}z^{2} + h'(z) &= 3xy^{2}z^{2} \rightarrow h(z) = C\\
+        \end{align*}
+        \item The general solution is $f(x,y,z) = xy^{2}z^{3} + C$
+    \end{itemize}
+
+    \paragraph{15} $\mathbf{F}(x,y,z) = \langle z\cos(y), xz\sin(y), x\cos(y) \rangle $
+    \begin{itemize}
+        \item \textbf{Solution} $P,Q,R$ are continuous and have continuous first partials. The curl is
+        \[ \mathrm{curl}(\mathbf{F}) =  \langle -x\sin(y)-x\sin(y), \cos(y)-\cos(y), z\sin(y) -(-z\sin(y)) \rangle = \langle -2x\sin(y), 0, 2z\sin(y) \rangle \]
+        \item The curl is a nonzero vector and therefore the field is not conservative.
+    \end{itemize}
+
+    \paragraph{17} $\mathbf{F}(x,y,z) = \langle e^{yz}, xze^{yz}, xye^{yz}\rangle$
+    \begin{itemize}
+        \item \textbf{Solution} Continuous checks: confirmed. Curl?
+        \[ \nabla \times \mathbf{F} = \langle xe^{yz}-xyze^{yz}-(xe^{yz}-xyze^{yz}), ye^{yz}-ye^{yz}, ze^{yz}-ze^{yz} \rangle = \mathbf{0}\]
+        \item Field is conservative. Find $f$:
+        \begin{align*}
+            f &= \int e^{yz}dx = xe^{yz} + g(y,z)\\
+            f_y = xze^{yz} + g'(y,z) &= xze^{yz} = Q\\
+            &\rightarrow g'(y,z) = 0 \hspace{0.2in} g(y,z) = h(z)\\
+            f &= xe^{yz} + h(z) \\
+            f_z = xye^{yz} + h'(z) &= xye^{yz} = R\\
+            &\rightarrow h'(z) = 0 \hspace{0.2in} h(z) = C\\
+        \end{align*}
+        \item The general solution is $f(x,y,z) = xe^{yz} + C$
+    \end{itemize}
+
+    \paragraph{19} Is there a vector field $\mathbf{F}$ on $\mathbb{R}^3$ such that $\mathrm{curl}(\mathbf{F})=\langle x\sin(y), \cos(y), z-xy \rangle$?
+    \begin{itemize}
+        \item \textbf{Solution}: We know that $\nabla \cdot \nabla \times \mathbf{F} = 0$:
+        \[ \nabla \cdot \nabla \times \mathbf{F} = \parf{}{x}(x\sin(y)) + \parf{}{y}(\cos(y)) + \parf{}{z}(z-xy) =\sin(y) - \sin(y) + 1 \neq 0 \]
+        No, there does not exist such a function $\mathbf{F}$.
+    \end{itemize}
+
+    \paragraph{21} Show that any vector field of the form
+    \[
+        \mathbf{F}(x,y,z) = \langle f(x), g(y), h(z) \rangle
+    \]
+    where $f,g,h$ are differentiable, is irrotational.
+    \begin{itemize}
+        \item \textbf{Solution} Irrotational is synonymous with 0 curl. The curl of $\mathbf{F}$ will have components equal to 0
+        because when computing curl, partials with respect to variables other than the "position variable" of component vectors are taken.
+        In the case of $\mathbf{F}$, where the component functions are only dependent on their "position variable", any other partials will be 0 and thus
+        the curl will be $\mathbf{0}$.
+    \end{itemize}
+\end{document}
