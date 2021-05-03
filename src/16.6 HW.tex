@@ -1,0 +1,261 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{amsfonts}
+
+\title{Section 16.6 Homework}
+\author{1-5 odd, 13-25 odd, 33, 35, 39-49 odd, 61, 63}
+\date{}
+
+\newcommand{\eint}[1]{\iiint_E #1 dV}
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\D}{\mathcal{D}}
+
+
+\begin{document}
+    \maketitle
+    
+    \paragraph{1} Determine if the points $P(4,-5,1)$ and $Q(0,4,6)$ lie on the surface $\mathbf{r}(u,v) = \langle u+v, u-2v, 3+u-v \rangle$
+    \begin{itemize}
+        \item \textbf{Solution} These points can be tested using a system of equations:
+        \[\begin{bmatrix}1&1\\1&-2\\1&-1\end{bmatrix}\begin{bmatrix}u\\v\end{bmatrix} = \begin{bmatrix}4\\-5\\-2\end{bmatrix}\]
+        Which yields $u=1$ and $v=4$ as a solution. For $Q$,
+        \[\begin{bmatrix}1&1\\1&-2\\1&-1\end{bmatrix}\begin{bmatrix}u\\v\end{bmatrix} = \begin{bmatrix}0\\4\\3\end{bmatrix}\]
+    \end{itemize}
+    Row reduction for the first row gives $u=3$, then row reduction on the last row gives $v=0$ which does not solve the first equation; $Q$ is not on the surface.
+    
+    \paragraph{3} Identify what kind of surface is given by the parameterization below:
+    \[ \mathbf{r}(u,v) = \langle u+v, 3-v, 1+4u+5v \rangle \]
+    \begin{itemize}
+        \item \textbf{Solution}: constant $v$ lines will give the parametric equation of a line. For example, with $v = 0$, $\mathbf{r}(u,0) = \langle u, 3, 1+4u \rangle$. A similar thing will happen for constant $u$ lines, making this the parameterization of a plane.
+    \end{itemize}
+    
+    \paragraph{5} Identify what kind of surface is given by the parameterization below:
+    \[ \mathbf{r}(s,t) = \langle s\cos(t), s\sin(t), s \rangle \]
+    \begin{itemize}
+        \item \textbf{Solution}: Constant $t$ values will turn it into the parameterization of a line through the origin. Constant $s$ values create the parameterization or a circle with the radius determined by the value of $s$, as well as the height. This is a circular cone.
+    \end{itemize}
+
+    \section*{13-17} Match equations to graphs (in the textbook), and identify what grid lines correspond to $u$ and $v$ lines.
+    \paragraph{13} $\mathbf{r}(u,v) = \langle u\cos(v), u\sin(v), v \rangle$. 
+    \begin{itemize}
+        \item \textbf{Solution}: A constant value of $v$ will mean $\mathbf{r}$ acts like the parameterization of a line. If $v=0$, the line is $\mathbf{r}(u,0) = \langle u, 0, 0 \rangle$ which is a line along the $x$ axis. $\mathbf{r}(u,\pi/2) = \langle 0, u, \pi/2 \rangle$ is a line parallel to the $y$ axis at $z=\pi/2$. As $v$ increases, the line will exist at a higher $z$ value and will point in some direction radially away from the $z$ axis. The graph to match is IV, where radial lines are constant $v$ lines and spiral lines are constant $u$ lines.
+    \end{itemize}
+    
+    \paragraph{15} $\mathbf{r}(u,v) = \langle u^3-u, v^2, u^2 \rangle$. 
+    \begin{itemize}
+        \item \textbf{Solution}: Constant $u$ value lines create lines that extrude along the positive $y$ axis from the origin. Constant values of $v$ means the $y$ coordinate is fixed, and the shape is extruded from the $xz$ plane. The matching graph is I.
+    \end{itemize}
+    
+    \paragraph{17} $\mathbf{r}(u,v) = \langle \cos^3(u)\cos^3(v), \sin^3(u)\cos^3(v), \sin^3(v) \rangle$. 
+    \begin{itemize}
+        \item \textbf{Solution}: Constant $u$ values create $\mathbf{r}(k,u) = \langle k_1\cos^3(v), k_2\cos^3(v), \sin^3(v) \rangle$. Constant $v$ curves will live in a plane parallel to the $xy$ plane. The only graph that matches this is III.
+    \end{itemize}
+    
+    \section*{19-25} Find a parametric representation of the surface.
+    \paragraph{19} The plane through the origin that contains the vectors $\mathbf{i-j}$ and $\mathbf{j-k}$.
+    \begin{itemize}
+        \item \textbf{Solution}: The plane contains the vectors $\langle 1, -1, 0 \rangle$ and $\langle 0, 1, -1 \rangle$. The normal to the plane is the cross of these two vectors $\langle 1, -1, 0 \rangle \times \langle 0, 1, -1 \rangle = \langle 1,1,1 \rangle$. In point normal form the equation could look like $x+y+z=0 \longrightarrow z = f(x)=-x-y$, so using functional the parameterization format we get $\mathbf{r}(u,v) = \langle u,v, -u-v \rangle$ for all $u,v$.
+    \end{itemize}
+    
+    \paragraph{21} The part of the hyperboloid $4x^2-4y^2-z^2=4$ that lies in front of the $yz$ plane.
+    \begin{itemize}
+        \item \textbf{Solution}: This question is asking for the portion of the hyperboloid where $x$ is positive. Solve for $x$ and take the positive square root to get
+        \[ x = f(y,z) = \sqrt{1+y^2+\frac{1}{4}z^2} \]
+        $y$ and $z$ are not restricted since the inside of the root is a sum of squares. A parameterization is then
+        \[ \mathbf{r}(u,v) = \begin{bmatrix} \sqrt{1+u^2+\frac{1}{4}v^2}\\u\\v \end{bmatrix} \]
+    \end{itemize}
+    
+    \paragraph{23} The part of the sphere of radius 2 that lies above the cone $z=\sqrt{x^2+y^2}$.
+    \begin{itemize}
+        \item In spherical coordinates this would be a trivial setup. Since $z=\sqrt{x^2+y^2} \rightarrow z^2 = x^2 +y^2$, the cone intersects the sphere at $z=\sqrt{2}$ (solve the sphere equation), and the angle of the cone is $\phi_0 = \arccos(\frac{z}{\rho}) = \arccos{\frac{\sqrt{2}}{2}} = \pi/4$.
+        \[ \mathbf{r}(\phi,\theta) = \langle 2\cos(\phi)\sin(\theta), 2\sin(\phi)\sin(\theta), 2\cos(\phi)\rangle \]
+        With the restrictions $\phi \in [0,\pi/4]$ and $\theta \in [0,2\pi]$
+    \end{itemize}
+    
+    \paragraph{25} The part of the sphere of radius 6 that lies between the planes $z=0$ and $z=3\sqrt{3}$.
+    \begin{itemize}
+        \item \textbf{Solution}: The intersection of the plane $z=3\sqrt{3}$ occurs at $\phi_0 = \arccos(3\sqrt{3}/6) = \pi/6$. For $z=0$, $\phi_1 = \pi/2$. Using spherical to rectangular coordinate equations,
+        \[ \mathbf{r}(\phi,\theta) = \langle 36\cos(\phi)\sin(\theta), 36\sin(\phi)\sin(\theta), 36\cos(\phi) \rangle \]
+        For $\phi \in [\pi/6, \pi/2]$ and $\theta \in [0,2\pi]$.
+    \end{itemize}
+    
+    \paragraph{33} Find the tangent plane to the surface at the given point:
+    \[ 
+        \mathbf{r}(u,v) = \langle u+v, 3u^2, u-v \rangle
+        \hspace{0.3in} P(2,3,0)
+    \]
+    \begin{itemize}
+        \item \textbf{Solution}: Find partials, find their cross product, then put into point normal form to get plane.
+        \[\parf{\mathbf{r}}{u} = \langle 1, 6u, 1 \rangle \hspace{0.3in} \parf{\mathbf{r}}{v} = \langle 1, 0, -1 \rangle \]
+        \[
+            \mathbf{n} = \mathbf{r}_u \times \mathbf{r}_v= 
+            \begin{vmatrix} 
+                \mathbf{i} & \mathbf{j} & \mathbf{k}\\
+                1 & 6u & 1 \\
+                1 & 0 & -1\\
+            \end{vmatrix}
+            = \langle -6u, 2, -6u \rangle
+        \]
+        The point $P(2,3,0)$ corresponds to the point (1,1) in the $uv$ plane, so the tangent plane equation is
+        \[ -6(x-2) + 2(y-3) -6z = 0 \]
+    \end{itemize}
+    
+    \paragraph{35} Find the tangent plane to the surface at the given point:
+    \[ 
+        \mathbf{r}(u,v) = \langle u\cos(v), u\sin(v), v \rangle
+        \hspace{0.3in} (u,v)=(1,\pi/3)
+    \]
+    \begin{itemize}
+        \item \textbf{Solution}: The point in the $uv$ plane corresponds to $P(1/2, \sqrt{3}/2, \pi/3)$ in $xyz$ space. Same as before,
+        \[ \parf{\mathbf{r}}{u} = \langle \cos(v), \sin(v), 0 \rangle \hspace{0.3in} \parf{\mathbf{r}}{v} = \langle -u\sin(v), u\cos(v), 1 \rangle\]
+        \[
+            \mathbf{n} = 
+            \begin{vmatrix}
+                \mathbf{i} & \mathbf{j} & \mathbf{k}\\
+                \cos(v) & \sin(v) & 0 \\
+                -u\sin(v) & u\cos(v) & 1 \\
+            \end{vmatrix}
+            = \langle \sin(v), -\cos(v), u \rangle
+        \]
+        At the point $1,\pi/3$ the normal vector is $\langle \sqrt{3}/2, -1/2, 1 \rangle$. The equation of the tangent plane is 
+        \[ \frac{\sqrt{3}}{2}(x-\frac{1}{2}) - \frac{1}{2}(y-\frac{\sqrt{3}}{2}) + (z-\frac{\pi}{3}) = 0 \]
+    \end{itemize}
+    
+    \section*{39-49} Find the area of the surface.
+    \paragraph{39} The part of the plane $3x+2y+z=6$ that lies in the first octant.
+    \begin{itemize}
+        \item We need to parameterize the surface. We can transform the plane into a function $z=f(x,y)=6-3x-2y$ and use that to make our parameterization $\mathbf{r}(u,v) = \langle u,v,6-3u-2v \rangle$ for all $u \in [0,2]$ and $v \in [0,3]$. The integral for surface area of a paremeterized surface requires the magnitude of the normal, so we will find both partials and the normal:
+        \begin{align*}
+            \mathbf{r}_u &= \langle 1, 0, -3 \rangle \\
+            \mathbf{r}_v &= \langle 0, 1,, -2 \rangle \\
+            \mathbf{n} &= \begin{vmatrix}
+                 \mathbf{i} & \mathbf{j} & \mathbf{k}\\
+                 1 & 0 & -3\\
+                 0 & 1 & -2\\
+            \end{vmatrix}\\
+            &= \langle 3, 2, 1 \rangle
+        \end{align*}
+        The magnitude of the normal is $\sqrt{1+4+9} = \sqrt{14}$, and the integral is
+        \[ \mathrm{SA} = \iint_{\mathcal{D}} ||\mathbf{r}_u \times \mathbf{r}_v||dA = \iint_{\mathcal{D}} \sqrt{14}dA\]
+    \end{itemize}
+    This is equal to $\mathrm{area}(\mathcal{D}) \cdot \sqrt{14}$, where $\mathcal{D}$ is the triangle in the first quadrant (in $xy$ space) under the line $3x+2y=6$, whose area is (1/2)(3)(2)=3. Thus the area of the surface is $3\sqrt{14}$.
+    
+    \paragraph{41} The part of the plane $x+2y+3z=1$ that lies inside the cylinder $x^2+y^2 = 3$.
+    \begin{itemize}
+        \item \textbf{Solution}: The plane function is $z=f(x,y)=\frac{1}{3}(1-x-2y)$ but the domain $\mathcal{D}$ in $xy$ space is a disk of radius $\sqrt{3}$. If we parameterize the surface as $\mathbf{r}(u,v) = \langle u,v, \frac{1}{3}(1-u-2v) \rangle$ the domain $S$ in $uv$ space will be a disk as well, which we can convert using polar coordinates. Let's first find the normal vector and its magnitude:
+        \[ \mathbf{r}_u = \langle 1, 0, -\frac{1}{3}\rangle \hspace{0.3in} \mathbf{r}_v = \langle 0, 1, -\frac{2}{3} \rangle \]
+        \[ 
+            \mathbf{n} &= 
+            \begin{vmatrix}
+                 \mathbf{i} & \mathbf{j} & \mathbf{k}\\
+                 1 & 0 & -1/3\\
+                 0 & 1 & -2/3\\
+            \end{vmatrix} = \langle 1/3, 2/3, 1 \rangle
+        \]
+        The magnitude of the normal is $\sqrt{1+1/9 + 4/9} = \sqrt{14/9}$ or $\sqrt{14}/3$. Like above, the integral will be this value integrated against $dA$ which is also equal to the area of $\mathcal{D}$ times the constants: 
+        \[ \iint_{\mathcal{D}} ||\mathbf{r}_u \times \mathbf{r}_v|| dA = \frac{\sqrt{14}}{3}\cdot \mathrm{area}(\mathcal{D}) = 14\pi \]
+    \end{itemize}
+    
+    \paragraph{43} The surface below for $x \in [0,1]$ and $y \in [0,1]$
+    \[ z=\frac{2}{3}(x^{3/2}+y^{3/2}) \]
+    \begin{itemize}
+        \item \textbf{Solution}: The parameterization of the surface is
+        \[ \mathbf{r}(u,v) = \langle u,v, \frac{2}{3}(u^{3/2} + v^{3/2}) \rangle \]
+        for $u \in [0,1]$ and $v \in [0,1]$. The partials are
+        \[ \mathbf{r}_u = \langle 1, 0, \sqrt{u}\rangle \hspace{0.3in} \mathbf{r}_v = \langle 0, 1, \sqrt{v} \rangle \]
+        \[ 
+            |\mathbf{n}| = |\begin{vmatrix}
+                \mathbf{i} & \mathbf{j} & \mathbf{k}\\
+                1 & 0 & \sqrt{u}\\
+                0 & 1 & \sqrt{v}\\
+            \end{vmatrix}| = |\langle -\sqrt{u}, -\sqrt{v}, 1 \rangle | = \sqrt{u + v + 1}
+        \]
+    \end{itemize}
+    The integral for surface area becomes
+    \begin{align*}
+        \iint_{\mathcal{D}} ||\mathbf{r}_u \times \mathbf{r}_v|| dA &= \int_0^1 \int_0^1 \sqrt{u+v+1} dudv \\
+        &= \frac{2}{3}\int_0^1 (v+2)^{3/2}-(v+1)^{3/2} dv\\
+        &= \frac{2}{3}[\frac{2}{5}(v+2)^{5/2}-\frac{2}{5}(v+1)^{5/2}]_{v=0}^{v=1} \\
+        &= \frac{4}{15}[((3)^{5/2}-(2)^{5/2})-((2)^{5/2}-(1)^{5/2})]
+    \end{align*}
+    
+    \paragraph{45} The part of $z=xy$ that lies inside the cylinder $x^2+y^2=1$.
+    \begin{itemize}
+        \item \textbf{Solution}: $\mathbf{r}(u,v)=\langle u,v, uv \rangle$. Finding partials and normal we get:
+        \[ \mathbf{r}_u = \langle 1, 0, v\rangle \hspace{0.3in} \mathbf{r}_v = \langle 0, 1, u \rangle \]
+        The magnitude of the normal is
+        \[  
+            |\mathbf{n}| = |\begin{vmatrix}
+                \mathbf{i} & \mathbf{j} & \mathbf{k}\\
+                1 & 0 & v\\
+                0 & 1 & u\\
+            \end{vmatrix}| = |\langle v, u, 1 \rangle | = \sqrt{u^2 + v^2 + 1}
+        \]
+        Since we are integrating over a disk of radius $1$, we can convert the integral to polar and solve.
+        \begin{align*}
+            \iint_{\mathcal{D}} \sqrt{u^2+v^2+1}dA &= \int_0^{2\pi} \int_0^1 \sqrt{r^2+1}rdrd\theta\\
+            w &= r^2 + 1 \hspace{0.2in} dw = 2rdr \\
+            w(0) &= 1 \hspace{0.2in} w(1) = 2\\
+            &= \frac{1}{2}\int_0^{2\pi}d\theta \int_1^2 \sqrt{w}dw \\
+            &= 2\pi\cdot \frac{1}{3}w^{3/2}|_1^2 = \frac{2\pi}{3}(2\sqrt{2}-1)
+        \end{align*}
+    \end{itemize}
+    
+    \paragraph{47} The part of the paraboloid $y=x^2+z^2$ that lies inside the cylinder $x^2+z^2=16$.
+    \begin{itemize}
+        \item \textbf{Solution}: Convert to polar using $x=r\cos(\theta)$ and $z=r\sin(theta)$, so that $y=r^2$. The region is the disk of radius 4. The parameterization becomes
+        \[ \mathbf{r}(r,\theta) = \langle r\cos(\theta), r^2, r\sin(\theta) \rangle \]
+        For $r \in [0,4]$. The partials are
+        \[ \mathbf{r}_r = \langle \cos(\theta), 2r, \sin(\theta) \rangle \hspace{0.3in} \mathbf{r}_{\theta} = \langle -r\sin(\theta), 0, r\cos(\theta) \rangle \]
+        \begin{align*}
+            |\mathbf{n}| = |\begin{vmatrix}
+                \mathbf{i} & \mathbf{j} & \mathbf{k}\\
+                \cos(\theta) & 2r & \sin(\theta)\\
+                -r\sin(\theta) & 0 & r\cos(\theta)\\
+            \end{vmatrix}| = |\langle 2r^2\cos(\theta), r, 2r^2\sin(\theta) \rangle | = \sqrt{4r^4 + r^2}
+        \end{align*}
+        We can take the magnitude to be $|\mathbf{n}| = r\sqrt{4r^2+1}$ since $r \geq 0$. The integral for surface area becomes
+        \begin{align*}
+            \iint_{\mathcal{D}}r\sqrt{4r^2+1}dA &= \int_0^{2\pi} \int_0^4 r\sqrt{4r^2+1}drd\theta\\
+            w &= 4r^2 + 1 \hspace{0.2in} dw = 8rdr \\
+            w(0) &= 1 \hspace{0.2in} w(1) = 5\\
+            &= \frac{1}{8}\int_0^{2\pi}d\theta \int_1^2 \sqrt{w}dw \\
+            &= 2\pi\cdot \frac{1}{12}w^{3/2}|_1^5 = \frac{\pi}{6}(5^{3/2}-1)
+        \end{align*}
+    \end{itemize}
+    
+    \paragraph{49} The surface with parametric equation
+    \[ \mathbf{r}(u,v) = \langle u^2, uv, \frac{1}{2}v^2 \rangle \hspace{0.3in} u \in [0,1] \hspace{.2in} v \in [0,2]  \]
+    \begin{itemize}
+        \item \textbf{Solution} Partials and normal:
+        \begin{gather*}
+            \mathbf{r}_u = \langle 2u, v, 0 \rangle \hspace{0.3in} \mathbf{r}_{v} = \langle 0, u, v \rangle \\
+             |\mathbf{n}| = |\begin{vmatrix}
+                \mathbf{i} & \mathbf{j} & \mathbf{k}\\
+                2u & v & 0\\
+                0 & u & v\\
+            \end{vmatrix}| = |\langle v^2, -2uv, 2u^2 \rangle| = \sqrt{v^4 + 4u^2v^2 + 4u^4} \\
+        \end{gather*}
+         \item The expression inside the square root can be factored into $(2u^2 + v^2)^2$, which is always positive, so the result is $|\mathbf{n}| = 2u^2+v^2$. The surface area is 
+         \begin{align*}
+             \iint_{\mathcal{D}} (2u^2+v^2)dA &= \int_0^2 \int_0^1 (2u^2+v^2) dudv \\
+             &= \int_0^2 [\frac{2}{3}u^3 +uv^2]_0^1 dv \\
+             &= \int_0^2 (\frac{2}{3} + v^2)dv \\
+             &= [\frac{2}{3}v + \frac{1}{3}v^3]_0^2 \\
+             &= \frac{4}{3} + \frac{8}{3} = \frac{12}{3}\\
+             &= 4
+         \end{align*}
+    \end{itemize}
+    
+    \paragraph{61} Find the area of the part of the sphere $x^2+y^2+z^2-4z=0$ that lies inside the paraboloid $z=x^2+y^2$
+    \begin{itemize}
+        \item \textbf{Solution}: The sphere equation is (by completing the square) $x^2 + y^2 + (z-2)^2 =4$. To find the intersection of the paraboloid and the sphere we use $z=x^2+y^2$ in the sphere equation to get $z+z^2=4z$, which yields the planes $z=0$ and $z=3$, as the lower and upper bounds respectively.
+    \end{itemize}
+    
+    
+\end{document}

@@ -1,0 +1,106 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{amsfonts}
+
+
+\title{Take Home Quiz 11}
+\author{}
+\date{}
+
+\newcommand{\dint}[1]{\iint_{\mathcal{D}} #1 dA}
+\newcommand{\D}{\mathcal{D}}
+
+
+\begin{document}
+    \maketitle
+
+    \paragraph{1} Let $S$ be the surface of the cone $z=-\sqrt{x^2+y^2}$ above the plane $z=-2$.
+    \begin{enumerate}[label=(\alph*)]
+        \item Write a parametrization of this surface. Be sure to include the domain as part of your parametrization. Restrict the domain so that we get exactly one copy of $S$. (Warning: read part (b) before you do this so that you choose a parametrization that will work for part b.)
+        \item Use your parametrization to calculate the surface area of $S$.
+    \end{enumerate}
+    \begin{itemize}
+        \item \textbf{Solution}: It is tempting to use $\mathbf{r}(u,v) = \langle u,v, \sqrt{u^2+v^2} \rangle$ but note that the partials will be discontinuous on the domain with which we are working ($\mathcal{D}$ being the disk of radius 2). So we will use polar instead.
+        \item Let $\mathbf{r}(r, \theta) = \langle r\cos(\theta), r\sin(\theta), -r \rangle$ for $r \in [0,2]$ and $\theta \in [0,2\pi]$. The partials are
+        \[ \mathbf{r}_r = \langle \cos(\theta), \sin(\theta), -1 \rangle \hspace{0.3in} \mathbf{r}_{\theta} = 
+        \langle -r\sin(\theta), r\cos(\theta), 0 \rangle\]
+        Computing the magnitude of the normal, we get
+        \begin{align*}
+            |\mathbf{n}| &= |\mathbf{r}_r \times \mathbf{r}_{\theta}| \\
+            &= \begin{vmatrix} 
+                \mathbf{i} & \mathbf{j} & \mathbf{k} \\
+                \cos(\theta) & \sin(\theta) & -1 \\
+                -r\sin(\theta) & r\cos(\theta) & 0 \\
+            \end{vmatrix} \\
+            &= |\langle r\cos(\theta), r\sin(\theta) ,-r\sin^2(\theta)-r\cos^2(\theta) \rangle| \\
+            &= \sqrt{r^2 + r^4} \\
+            &= r\sqrt{1+r^2}
+        \end{align*}
+        \item We know that $r$ is always positive over the interval $[0,2]$ so we can pull a positive $r$ out of the square root. The integral for surface area becomes
+        \begin{align*}
+            \iint_{\mathcal{D}} |\mathbf{r}_r \times \mathbf{r}_{\theta}| dA &= \int_0^{2\pi} \int_0^2 \sqrt{1+r^2}rdrd\theta \\
+            &w = 1+r^2 \hspace{0.1in} dw = 2rdr\\
+            &w(0) = 1 \hspace{0.1in} w(2) = 5\\
+            &= \frac{1}{2}\int_0^{2\pi} \int_1^5 \sqrt{w}dw \\
+            &= \frac{1}{2}(2\pi)[\frac{2}{3}w^{3/2}]_1^5 \\
+            &= \frac{2\pi}{3}(5^{3/2}-1)
+        \end{align*}
+    \end{itemize}
+    
+    \newpage
+    \paragraph{2} Let $S$ be the unit sphere.
+    \begin{enumerate}[label=(\alph*)]
+        \item Write a parameterization for $S$ in terms of the parameters $\theta$ and $\phi$, which take on their typical spherical coordinate roles in $\mathbb{R}^3$. Be sure to restrict the domain appropriately such that we get exactly one copy of $S$.
+        \item Use your parameterization from part (a) to find the equation of a tangent line at the point
+        \[ (\frac{\sqrt{3}}{2}, \frac{1}{2}, 0) \]
+    \end{enumerate}
+    \begin{itemize}
+        \item \textbf{Solution}: We will use the standard rectangular to spherical coordinate conversion system to build the paramterization, with $\rho=1$:
+        \[ \mathbf{r}(\theta, \phi) = \langle \sin(\phi)\cos(\theta), \sin(\phi)\sin(\theta), \cos(\phi) \rangle \]
+        With the restrictions $0 \leq \theta \leq 2\pi$ and $0 \leq \phi \leq \pi$. 
+        \item The partials are
+        \[ \mathbf{r}_{\theta} = \langle -\sin(\phi)\sin(\theta), \sin(\phi)\cos(\theta), 0 \rangle \hspace{0.3in} \mathbf{r}_{\phi} = \langle \cos(\phi)\cos(\theta), \cos(\phi)\sin(\theta), -\sin(\phi) \rangle\]
+        Computing the normal, we get
+        \[
+            \mathbf{n} = \mathbf{r}_{\theta} \times \mathbf{r}_{\phi} 
+            = \begin{bmatrix} 
+                \mathbf{i} & \mathbf{j} & \mathbf{k} \\
+                -\sin(\phi)\sin(\theta) & \sin(\phi)\cos(\theta) & 0 \\
+                \cos(\phi)\cos(\theta) & \cos(\phi)\sin(\theta) & -\sin(\phi) \\
+            \end{bmatrix} =
+            \begin{bmatrix}
+                -\sin^2(\phi)\cos(\theta)\\
+                -\sin^2(\phi)\sin(\theta)\\
+                -\sin(\phi)\cos(\phi)
+            \end{bmatrix}
+        \]
+        \item The point of tangency in $\mathbb{R}^3$ corresponds to some point in the $\theta\phi$ plane, governed by the following equations:
+        \begin{align*}
+            \sin(\phi_0)\cos(\theta_0) &= \frac{\sqrt{3}}{2}\\
+            \sin(\phi_0)\sin(\theta_0) &= \frac{1}{2}\\
+            \cos(\phi_0) &= 0\\
+        \end{align*}
+        $\cos(\phi_0) = 0$ implies $\phi_0 = \pi/2$ or $3\pi/2$, but we only care about $\pi/2$ for our interval. By the first equation, $\sin(\pi/2)\cos(\theta_0) = \cos(\theta_0) = \sqrt{3}/2$ means $\theta_0 = \pi/6$ or $11\pi/6$. Since by the second equation $\sin(\theta_0) > 0$, we know $\theta_0$ must be in quadrant I. The point is $(\theta_0, \phi_0)=(\pi/6, \pi/2)$.
+        \item To find the normal of our tangent plane, we need to evaluate $\mathbf{n}(\pi/6, \pi/2)$:
+        \[ 
+        \mathbf{n}=
+        \begin{bmatrix}
+            -\sin^2(\pi/2)\cos(\pi/6)\\
+            -\sin^2(\pi/2)\sin(\pi/6)\\
+            -\sin(\pi/2)\cos(\pi/2)
+        \end{bmatrix}=
+        -\begin{bmatrix}
+            \sqrt{3}/2\\1/2\\0
+        \end{bmatrix}
+        \]
+        \item Putting everything in point normal form we get
+        \[ \frac{\sqrt{3}}{2}(x-\frac{\sqrt{3}}{2}) + \frac{1}{2}(y-\frac{1}{2}) = 0 \]
+    \end{itemize}
+
+\end{document}
+
+
